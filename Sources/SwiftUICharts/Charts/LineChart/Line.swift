@@ -36,7 +36,14 @@ public struct Line: View {
                               trimTo: didCellAppear ? 1.0 : 0.0)
                     .animation(.easeIn)
                 if self.showIndicator {
-                    IndicatorPoint()
+                    
+                    Text(String(format: "%.2f", self.chartValue.currentValue))
+                        .bold()
+                        .foregroundColor(style.foregroundColor[0].endColor)
+                        .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                touchLocation: self.touchLocation).x, y: 0)
+                    
+                    IndicatorPoint(color: style.foregroundColor[0].endColor)
                         .position(self.getClosestPointOnPath(geometry: geometry,
                                                              touchLocation: self.touchLocation))
                         .rotationEffect(.degrees(180), anchor: .center)
@@ -85,12 +92,13 @@ extension Line {
 
 //	/// Figure out where closest touch point was
 //	/// - Parameter point: location of data point on graph, near touch location
-    private func getClosestDataPoint(geometry: GeometryProxy, touchLocation: CGPoint) {
+    private func getClosestDataPoint(geometry: GeometryProxy, touchLocation: CGPoint){
         let geometryWidth = geometry.frame(in: .local).width
         let index = Int(round((touchLocation.x / geometryWidth) * CGFloat(chartData.points.count - 1)))
         if (index >= 0 && index < self.chartData.data.count){
             self.chartValue.currentValue = self.chartData.points[index]
         }
+        
     }
 }
 
@@ -104,6 +112,7 @@ struct Line_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             Line(chartData:  ChartData([8, 23, 32, 7, 23, -4]), style: blackLineStyle)
+               
             Line(chartData:  ChartData([8, 23, 32, 7, 23, 43]), style: redLineStyle)
         }
     }

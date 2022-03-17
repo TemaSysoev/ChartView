@@ -2,43 +2,18 @@
 
 Swift package for displaying charts effortlessly.
 
-## V2 Beta is here 🎉🎉🎉
-
-V2 focuses on providing a strong and easy to use base, on which you can build your beautiful custom charts. It provides basic building blocks, like a chart view (bar, pie, line and ring chart), grid view, card view, interactive label for displaying the curent chart value. 
-So you decide, whether you build a fully fledged interactive view, or just display a bare bone chart
-
-* [How to install SwiftUI ChartView](https://github.com/AppPear/ChartView/wiki/How-to-install-SwiftUI-ChartView)
-
-* [How to create your first chart](https://github.com/AppPear/ChartView/wiki/How-to-create-your-first-chart)
-
-### It supports interactions and animations
-<img src="https://user-images.githubusercontent.com/2826764/130787802-9aa619ee-05de-4343-ba3c-1796e4d05e08.gif" width="26%"></img> <img src="https://user-images.githubusercontent.com/2826764/130787814-283f3d26-6c9d-448b-b2c7-879e60a3b05d.gif" width="26%"></img> 
-
-### It is fully customizable, and works together with native SwiftUI elements well
-<img src="https://user-images.githubusercontent.com/2826764/130785262-010d6791-16cf-485d-b920-29e4086477e2.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/2826764/130785266-94a08622-2963-4177-8777-8bd3ad463809.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/2826764/130785268-284314de-ba96-4fb7-a1e5-8a46578e1f0e.png" width="45%"></img> 
-
-
-## Original (stable) version: 
-
-<img src="https://user-images.githubusercontent.com/2826764/131211993-5d33312b-09af-44b4-a32e-ffaad739adfe.gif" width="45%"></img> <img src="https://user-images.githubusercontent.com/2826764/131211994-48c9ce4e-2e67-40a0-b727-c88bdbd22cd0.gif" width="45%">
-
-### Usage
+![SwiftUI Charts](./Resources/showcase1.gif "SwiftUI Charts")
 
 It supports:
 * Line charts
 * Bar charts
 * Pie charts
 
-### Slack
-Join our Slack channel for day to day conversation and more insights:
-
-[Slack invite link](https://join.slack.com/t/swiftuichartview/shared_invite/zt-g6mxioq8-j3iUTF1YKX7D23ML3qcc4g)
-
 ### Installation:
 
 It requires iOS 13 and Xcode 11!
 
-In Xcode go to `File -> Swift Packages -> Add Package Dependency` and paste in the repo's url: `https://github.com/AppPear/ChartView`
+In Xcode got to `File -> Swift Packages -> Add Package Dependency` and paste inthe repo's url: `https://github.com/AppPear/ChartView`
 
 ### Usage:
 
@@ -54,8 +29,7 @@ Added an example project, with **iOS, watchOS** target: https://github.com/AppPe
 
 **LineChartView with multiple lines!**
 First release of this feature, interaction is disabled for now, I'll figure it out how could be the best to interact with multiple lines with a single touch.
-
-<img src="https://user-images.githubusercontent.com/2826764/131211991-eca64276-cf05-423f-a78a-697c55e44bbc.gif" width="50%"></img>
+![Multiine Charts](./Resources/multiline1.gif "Multiine Charts")
 
 Usage:
 ```swift
@@ -76,6 +50,7 @@ Available preset gradients:
 
 **Full screen view called LineView!!!**
 
+![Line Charts](./Resources/fullscreen2.gif "Line Charts")
 
 ```swift
  LineView(data: [8,23,54,32,12,37,7,23,43], title: "Line chart", legend: "Full screen") // legend is optional, use optional .padding()
@@ -83,7 +58,7 @@ Available preset gradients:
 
 Adopts to dark mode automatically 
 
-<img src="https://user-images.githubusercontent.com/2826764/131211977-27439357-491d-4872-a6bd-f696edac4c7f.gif" width="45%"></img> <img src="https://user-images.githubusercontent.com/2826764/131211985-f77464d6-7fd8-429d-9e77-9f9bc7424d32.gif" width="45%">
+![Line Charts](./Resources/showcase3.gif "Line Charts")
 
 You can add your custom darkmode style by specifying:
 
@@ -105,7 +80,7 @@ You can add a line chart with the following code:
 
 
 ## Bar charts
-<img src="https://user-images.githubusercontent.com/2826764/131211994-48c9ce4e-2e67-40a0-b727-c88bdbd22cd0.gif" width="45%">
+![Bar Charts](./Resources/showcase2.gif "Bar Charts")
 
 **[New feature] you can display labels also along values and points for each bar to descirbe your data better!**
 **Bar chart is interactive, so you can drag across to reveal the data points**
@@ -183,9 +158,10 @@ You can access built-in styles:
 * barChartMidnightGreenLight
 * barChartMidnightGreenDark
 
-<img src="https://user-images.githubusercontent.com/2826764/131211990-e41cec90-38f4-4965-8bdc-41c30b79acea.gif" width="45%">
+![Midnightgreen](./Resources/midnightgreen.gif "Midnightgreen")
 
-<img src="https://user-images.githubusercontent.com/2826764/131211999-6ec4f13b-0465-4135-b576-76e31b11a2c6.png" width="45%">
+![Custom Charts](./Resources/showcase5.png "Custom Charts")
+
 
 ### You can customize the size of the chart with a ChartForm object: 
 
@@ -199,16 +175,12 @@ You can access built-in styles:
 BarChartView(data: [8,23,54,32,12,37,7,23,43], title: "Title", form: ChartForm.small)
 ```
 
-### You can choose whether bar is animated or not after completing your gesture.
-
-If you want to animate back movement after completing your gesture, you set `animatedToBack` as `true`. 
-
 ### WatchOS support for Bar charts: 
 
-<img src="https://user-images.githubusercontent.com/2826764/131212000-a058fdd9-af40-4e64-adc3-82201ea2484d.png" width="45%">
+![Pie Charts](./Resources/watchos1.png "Pie Charts")
 
 ## Pie charts
-<img src="https://user-images.githubusercontent.com/2826764/131211998-e142657d-0ebc-43b7-aeda-07cae4d9e34b.png" width="45%">
+![Pie Charts](./Resources/showcase4.png "Pie Charts")
 
 You can add a pie chart with the following code: 
 

@@ -23,7 +23,11 @@ public struct Line: View {
 	/// On appear, set the frame so that the data graph metrics can be calculated. On a drag (touch) gesture, highlight the closest touched data point.
 	/// TODO: explain rotation
     public var body: some View {
+       
+            
         GeometryReader { geometry in
+           
+                
             ZStack {
                 if self.didCellAppear && self.showBackground {
                     LineBackgroundShapeView(chartData: chartData,
@@ -37,17 +41,36 @@ public struct Line: View {
                     .animation(.easeIn)
                 if self.showIndicator {
                     
-                    Text(String(format: "%.2f", self.chartValue.currentValue))
-                        .bold()
-                        .foregroundColor(style.foregroundColor[0].endColor)
-                        .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                touchLocation: self.touchLocation).x, y: 0)
+                   
                     
                     IndicatorPoint(color: style.foregroundColor[0].endColor)
                         .position(self.getClosestPointOnPath(geometry: geometry,
                                                              touchLocation: self.touchLocation))
                         .rotationEffect(.degrees(180), anchor: .center)
                         .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                    if #available(iOS 15.0, *) {
+                        Text(String(format: "%.0f", self.chartValue.currentValue))
+                            .bold()
+                            .foregroundColor(style.foregroundColor[0].endColor)
+                        
+                            .frame(width: 100, height: 30)
+                        
+                            .background(.regularMaterial)
+                            .cornerRadius(6)
+                            .padding()
+                            .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                    touchLocation: self.touchLocation).x, y: 0)
+                    } else {
+                        Text(String(format: "%.0f", self.chartValue.currentValue))
+                            .bold()
+                            .foregroundColor(style.foregroundColor[0].endColor)
+                        
+                            .frame(width: 100, height: 30)
+                            .cornerRadius(6)
+                            .padding()
+                            .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                    touchLocation: self.touchLocation).x, y: 0)
+                    }
                 }
             }
             .onAppear {
@@ -70,7 +93,8 @@ public struct Line: View {
                     self.chartValue.interactionInProgress = false
                 })
             )
-        }
+        
+    }
     }
 }
 

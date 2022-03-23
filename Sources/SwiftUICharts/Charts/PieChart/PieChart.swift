@@ -16,3 +16,14 @@ public struct PieChart: View, ChartBase {
 
     public init() {}
 }
+struct PieChart_Previews: PreviewProvider {
+    static var previews: some View {
+    PieChart()
+        .data([("k1", 4), ("k2", 3), ("k3", 9), ("k4", 5), ("k5", 6), ("k6", 2)])
+        
+        .chartStyle(ChartStyle(backgroundColor: .white,
+                               foregroundColor: ColorGradient(.yellow, .yellow)))
+        
+        
+    }
+}

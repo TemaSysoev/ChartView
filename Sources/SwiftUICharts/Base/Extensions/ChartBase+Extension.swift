@@ -11,7 +11,7 @@ extension View where Self: ChartBase {
             .environmentObject(chartData)
             .environmentObject(ChartValue())
     }
-
+    
     public func data(_ data: [(String, Double)]) -> some View {
         chartData.data = data
         return self

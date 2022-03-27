@@ -65,10 +65,11 @@ public struct PieChartRow: View {
                     .scaleEffect(currentTouchedIndex == index ? 1.05 : 1)
                     .animation(Animation.spring())
                     
-                    Text("\(slices[index].label): \(Int(slices[index].value))")
-                        .font(.footnote)
-                        .offset(x: geometry.size.height/5)
-                        .rotationEffect(.degrees(self.slices[index].startDeg + self.slices[index].endDeg)/2)
+                    Text("\(slices[index].label)")
+                        
+                        .font(.system(size: 9))
+                        .offset(x: 45)
+                        .rotationEffect(.degrees((self.slices[index].startDeg + self.slices[index].endDeg)/2))
                         .scaleEffect(currentTouchedIndex == index ? 1.1 : 1)
                            
                            

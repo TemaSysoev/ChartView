@@ -19,7 +19,7 @@ public struct LineChart: View, ChartBase {
 struct LineChart_Previews: PreviewProvider {
     static var previews: some View {
     LineChart()
-        .data([0, 4, 6, 3, 8, 9])
+        .data([("Other", 3), ("Books", 12), ("Food", 34), ("Transport", 60), ("Tech", 75), ("Coffee", 45)])
         .chartStyle(ChartStyle(backgroundColor: .yellow.opacity(0.1),
                                foregroundColor: ColorGradient(.yellow.opacity(0.2), .yellow)))
         

@@ -12,6 +12,7 @@ public struct Line: View {
     @State private var showBackground: Bool = true
     @State private var didCellAppear: Bool = false
 
+    @State private var currentDate = ""
     var curvedLines: Bool = true
     var path: Path {
         Path.quadCurvedPathWithPoints(points: chartData.normalisedPoints,
@@ -27,6 +28,7 @@ public struct Line: View {
             
         GeometryReader { geometry in
            
+           
                 
             ZStack {
                 if self.didCellAppear && self.showBackground {
@@ -40,39 +42,69 @@ public struct Line: View {
                               trimTo: didCellAppear ? 1.0 : 0.0)
                     .animation(.easeIn)
                 if self.showIndicator {
-                    
-                   
-                    
                     IndicatorPoint(color: style.foregroundColor[0].endColor)
                         .position(self.getClosestPointOnPath(geometry: geometry,
                                                              touchLocation: self.touchLocation))
                         .rotationEffect(.degrees(180), anchor: .center)
                         .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                    if #available(iOS 15.0, *) {
-                        Text(String(format: "%.0f", self.chartValue.currentValue))
-                            .bold()
-                            .foregroundColor(style.foregroundColor[0].endColor)
-                        
-                            .frame(width: 100, height: 30)
-                        
-                            .background(.regularMaterial)
-                            .cornerRadius(6)
-                            .padding()
-                            .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                    touchLocation: self.touchLocation).x, y: 0)
-                    } else {
-                        Text(String(format: "%.0f", self.chartValue.currentValue))
-                            .bold()
-                            .foregroundColor(style.foregroundColor[0].endColor)
-                        
-                            .frame(width: 100, height: 30)
-                            .cornerRadius(6)
-                            .padding()
-                            .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                    touchLocation: self.touchLocation).x, y: 0)
+                    VStack{
+                        if #available(iOS 15.0, *) {
+                            Text(String(format: "%.0f", self.chartValue.currentValue))
+                                .bold()
+                                .foregroundColor(style.foregroundColor[0].endColor)
+                            
+                                .frame(width: 100, height: 30)
+                            
+                                .background(.regularMaterial)
+                                .cornerRadius(6)
+                               
+                                .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                        touchLocation: self.touchLocation).x, y: 0)
+                                .padding()
+                        } else {
+                            Text(String(format: "%.0f", self.chartValue.currentValue))
+                                .bold()
+                                .foregroundColor(style.foregroundColor[0].endColor)
+                            
+                                .frame(width: 100, height: 30)
+                                .cornerRadius(6)
+                                .padding()
+                                .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                        touchLocation: self.touchLocation).x, y: 0)
+                        }
+                       
+                   Spacer()
+                       
+                        if #available(iOS 15.0, *) {
+                            Text(currentDate)
+                                .bold()
+                                .foregroundColor(style.foregroundColor[0].endColor)
+                            
+                                .frame(width: 100, height: 30)
+                            
+                                .background(.regularMaterial)
+                                .cornerRadius(6)
+                               
+                                .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                        touchLocation: self.touchLocation).x, y: 0)
+                                .padding()
+                        } else {
+                            Text(currentDate)
+                                .bold()
+                                .foregroundColor(style.foregroundColor[0].endColor)
+                            
+                                .frame(width: 100, height: 30)
+                                .cornerRadius(6)
+                                .padding()
+                                .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                        touchLocation: self.touchLocation).x, y: 0)
+                        }
                     }
                 }
             }
+            .padding()
+                
+        
             .onAppear {
                 didCellAppear = true
             }
@@ -121,6 +153,7 @@ extension Line {
         let index = Int(round((touchLocation.x / geometryWidth) * CGFloat(chartData.points.count - 1)))
         if (index >= 0 && index < self.chartData.data.count){
             self.chartValue.currentValue = self.chartData.points[index]
+            currentDate = self.chartData.values[index]
         }
         
     }

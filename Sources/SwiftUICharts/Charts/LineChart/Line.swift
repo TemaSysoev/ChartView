@@ -29,82 +29,60 @@ public struct Line: View {
         GeometryReader { geometry in
            
            
-                
+            VStack{
+                if self.showIndicator {
+                if #available(iOS 15.0, *) {
+                    Text(currentDate + "\n\(String(format: "%.0f", self.chartValue.currentValue))")
+                        .bold()
+                        .foregroundColor(style.foregroundColor[0].endColor)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 100, height: 60)
+                    
+                        .background(.regularMaterial)
+                        .cornerRadius(6)
+                       
+                        .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                touchLocation: self.touchLocation).x, y: 0)
+                        .padding()
+                } else {
+                    Text(currentDate)
+                        .bold()
+                        .foregroundColor(style.foregroundColor[0].endColor)
+                    
+                        .frame(width: 100, height: 30)
+                        .cornerRadius(6)
+                        .padding()
+                        .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                                touchLocation: self.touchLocation).x, y: 0)
+                }
+                }
             ZStack {
                 if self.didCellAppear && self.showBackground {
                     LineBackgroundShapeView(chartData: chartData,
                                             geometry: geometry,
                                             style: style)
+                    .padding(.top, 50)
                 }
                 LineShapeView(chartData: chartData,
                               geometry: geometry,
                               style: style,
                               trimTo: didCellAppear ? 1.0 : 0.0)
                     .animation(.easeIn)
+                    .padding(.top, 50)
                 if self.showIndicator {
                     IndicatorPoint(color: style.foregroundColor[0].endColor)
                         .position(self.getClosestPointOnPath(geometry: geometry,
                                                              touchLocation: self.touchLocation))
                         .rotationEffect(.degrees(180), anchor: .center)
                         .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                    VStack{
-                        if #available(iOS 15.0, *) {
-                            Text(String(format: "%.0f", self.chartValue.currentValue))
-                                .bold()
-                                .foregroundColor(style.foregroundColor[0].endColor)
-                            
-                                .frame(width: 100, height: 30)
-                            
-                                .background(.regularMaterial)
-                                .cornerRadius(6)
-                               
-                                .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                        touchLocation: self.touchLocation).x, y: 0)
-                                .padding()
-                        } else {
-                            Text(String(format: "%.0f", self.chartValue.currentValue))
-                                .bold()
-                                .foregroundColor(style.foregroundColor[0].endColor)
-                            
-                                .frame(width: 100, height: 30)
-                                .cornerRadius(6)
-                                .padding()
-                                .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                        touchLocation: self.touchLocation).x, y: 0)
-                        }
-                       
-                   Spacer()
-                       
-                        if #available(iOS 15.0, *) {
-                            Text(currentDate)
-                                .bold()
-                                .foregroundColor(style.foregroundColor[0].endColor)
-                            
-                                .frame(width: 100, height: 30)
-                            
-                                .background(.regularMaterial)
-                                .cornerRadius(6)
-                               
-                                .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                        touchLocation: self.touchLocation).x, y: 0)
-                                .padding()
-                        } else {
-                            Text(currentDate)
-                                .bold()
-                                .foregroundColor(style.foregroundColor[0].endColor)
-                            
-                                .frame(width: 100, height: 30)
-                                .cornerRadius(6)
-                                .padding()
-                                .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                        touchLocation: self.touchLocation).x, y: 0)
-                        }
-                    }
+                  
                 }
             }
-            .padding()
+            
+        }
+           
                 
-        
+           
             .onAppear {
                 didCellAppear = true
             }

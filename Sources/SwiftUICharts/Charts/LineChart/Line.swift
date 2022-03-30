@@ -66,7 +66,7 @@ public struct Line: View {
                             .cornerRadius(6)
                            
                             .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                    touchLocation: self.touchLocation).x, y: self.touchLocation.y - 40)
+                                                                    touchLocation: self.touchLocation).x, y: self.touchLocation.y - 180)
                             .padding()
                     } else {
                         Text(currentDate + ": \(String(format: "%.0f", self.chartValue.currentValue))")

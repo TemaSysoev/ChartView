@@ -49,35 +49,40 @@ public struct Line: View {
                     .animation(.easeIn)
                    
                 if self.showIndicator {
-                    
+                    Rectangle()
+                        .frame(width: 2, height: 3000)
+                        .position(x:self.getClosestPointOnPath(geometry: geometry,
+                                                               touchLocation: self.touchLocation).x, y: 0)
+                        .foregroundColor(style.foregroundColor[0].endColor.opacity(0.2))
                     IndicatorPoint(color: style.foregroundColor[0].endColor)
                         .position(self.getClosestPointOnPath(geometry: geometry,
                                                              touchLocation: self.touchLocation))
                         .rotationEffect(.degrees(180), anchor: .center)
                         .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     if #available(iOS 15.0, *) {
-                        Text(currentDate + ": \(String(format: "%.0f", self.chartValue.currentValue))")
+                    
+                    HStack{
+                   Image(systemName: "calendar")
+                            .foregroundColor(style.foregroundColor[0].endColor)
+                        Text(currentDate)
+                            
+                            .foregroundColor(style.foregroundColor[0].endColor)
+                        Spacer()
+                        Image(systemName: "sum")
+                            .foregroundColor(style.foregroundColor[0].endColor)
+                        Text("\(String(format: "%.0f", self.chartValue.currentValue))")
                             .bold()
                             .foregroundColor(style.foregroundColor[0].endColor)
-                            .multilineTextAlignment(.center)
-                            .frame(width: 180, height: 30)
-                        
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(6)
-                           
-                            .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                    touchLocation: self.touchLocation).x, y: self.touchLocation.y - 180)
-                            .padding()
-                    } else {
-                        Text(currentDate + ": \(String(format: "%.0f", self.chartValue.currentValue))")
-                            .bold()
-                            .foregroundColor(style.foregroundColor[0].endColor)
-                        
-                            .frame(width: 100, height: 30)
-                            .cornerRadius(6)
-                            .padding()
-                            .position(x: self.getClosestPointOnPath(geometry: geometry,
-                                                                    touchLocation: self.touchLocation).x, y: 0)
+                            
+                    }.padding()
+                    
+                 
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(6)
+                    .frame(maxWidth: 170)
+                    .position(x: self.getClosestPointOnPath(geometry: geometry,
+                                                            touchLocation: self.touchLocation).x, y: self.touchLocation.y - 100)
+                    
                     }
                 }
                

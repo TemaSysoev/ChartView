@@ -22,6 +22,8 @@ struct LineChart_Previews: PreviewProvider {
         .data([("Other", 3), ("Books", 12), ("Food", 34), ("Transport", 60), ("Tech", 75), ("Coffee", 45)])
         .chartStyle(ChartStyle(backgroundColor: .yellow.opacity(0.1),
                                foregroundColor: ColorGradient(.yellow.opacity(0.2), .yellow)))
+        .frame(height: 100)
+        .padding(.vertical)
         
         
     }

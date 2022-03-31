@@ -18,13 +18,21 @@ public struct LineChart: View, ChartBase {
 }
 struct LineChart_Previews: PreviewProvider {
     static var previews: some View {
+        VStack{
     LineChart()
-        .data([("Other", 3), ("Books", 12), ("Food", 34), ("Transport", 60), ("Tech", 75), ("Coffee", 45)])
+        .data([("03.03", 3), ("04.03", 12), ("05.03", 34), ("06.03", 60), ("07.03", 75), ("08.03", 45)])
         .chartStyle(ChartStyle(backgroundColor: .yellow.opacity(0.1),
                                foregroundColor: ColorGradient(.yellow.opacity(0.2), .yellow)))
         .frame(height: 100)
         .padding(.vertical)
+        LineChart()
+            .data([("03.03", 34), ("04.03", 12), ("05.03", 3), ("06.03", 23), ("07.03", 75), ("08.03", 45)])
+            .chartStyle(ChartStyle(backgroundColor: .green.opacity(0.1),
+                                   foregroundColor: ColorGradient(.green.opacity(0.2), .green)))
+            .frame(height: 100)
+            .padding(.vertical)
         
-        
+        }
+        .frame(height: 250)
     }
 }

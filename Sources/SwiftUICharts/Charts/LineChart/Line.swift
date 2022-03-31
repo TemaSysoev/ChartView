@@ -69,18 +69,22 @@ public struct Line: View {
                                     .imageScale(.small)
                                     .foregroundColor(style.foregroundColor[0].endColor)
                                 Text(currentDate)
-                                    .font(.footnote)
+                                    .font(.system(size: 12))
                                     .foregroundColor(style.foregroundColor[0].endColor)
                             }
+                            .padding(.top, 5)
+                            .padding(.horizontal, 7)
                             HStack{
                                
                                 Text("\(String(format: "%.0f", self.chartValue.currentValue))")
                                     .bold()
                                     .foregroundColor(style.foregroundColor[0].endColor)
                             }
-                            .padding(.top, 3)
+                            .padding(.top, 0.1)
+                            .padding(.bottom, 3)
                             
-                        }.padding()
+                            
+                        }
                         
                         
                             .background(.ultraThinMaterial)

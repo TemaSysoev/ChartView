@@ -7,7 +7,7 @@ let package = Package(
     name: "SwiftUIChartsForCheky",
     platforms: [
 
-        .iOS(.v13), .watchOS(.v6), .macOS(.v10_15)
+        .iOS("15.0"), .watchOS(.v6), .macOS("12.0")
 
     ],
     products: [

@@ -20,16 +20,12 @@ struct PieChart_Previews: PreviewProvider {
     static var previews: some View {
         HStack{
             PieChart()
-                .data([("k1", 4), ("k2", 3), ("k3", 9), ("k4", 5), ("k5", 6), ("k6", 2)])
+                .data([("sdjfg", 4), ("kdfgklf2", 3), ("kfgsdfj3", 9), ("ksdfg4", 5), ("ksgfd5", 6), ("gsdf", 0.7)])
                 
                 .chartStyle(ChartStyle(backgroundColor: .white,
                                        foregroundColor: ColorGradient(.yellow, .yellow)))
                 .padding()
-    PieChart()
-                .data([("Other", 32), ("Books", 45), ("Food", 9), ("Transport", 5), ("Tech", 123), ("Coffee", 2)])
-        
-        .chartStyle(ChartStyle(backgroundColor: .white,
-                               foregroundColor: ColorGradient(.yellow, .yellow)))
+    
         
         }
         

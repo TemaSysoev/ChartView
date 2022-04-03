@@ -59,13 +59,13 @@ public struct ChartLabel: View {
     private var labelColor: Color {
         switch labelType {
         case .title:
-            return Color(UIColor.label)
+            return Color.primary
         case .legend:
-            return Color(UIColor.secondaryLabel)
+            return Color.secondary
         case .subTitle:
-            return Color(UIColor.label)
+            return Color.primary
         case .largeTitle:
-            return Color(UIColor.label)
+            return Color.primary
         case .custom(_, _, let color):
             return color
         }

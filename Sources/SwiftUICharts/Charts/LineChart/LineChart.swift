@@ -18,7 +18,7 @@ public struct LineChart: View, ChartBase {
 }
 struct LineChart_Previews: PreviewProvider {
     static var previews: some View {
-        if #available(iOS 14.0, *) {
+        
             NavigationView{
                 VStack{
                     LineChart()
@@ -35,12 +35,9 @@ struct LineChart_Previews: PreviewProvider {
                         .padding(.vertical)
                   Spacer()
                 }
-                .navigationTitle(Text("Cheky"))
                 
             }
            
-        } else {
-            // Fallback on earlier versions
-        }
+       
     }
 }

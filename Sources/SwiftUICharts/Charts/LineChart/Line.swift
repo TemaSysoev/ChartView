@@ -62,7 +62,7 @@ public struct Line: View {
                                                              touchLocation: self.touchLocation))
                         .rotationEffect(.degrees(180), anchor: .center)
                         .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                    if #available(iOS 15.0, *) {
+                   
                         VStack(alignment: .center){
                             HStack{
                                 Image(systemName: "calendar")
@@ -94,7 +94,7 @@ public struct Line: View {
                                                                     touchLocation: self.touchLocation).x, y: -self.getClosestPointOnPath(geometry: geometry,
                                                                                                                                          touchLocation: self.touchLocation).y + 40)
                         
-                    }
+                    
                 }
                 
             }

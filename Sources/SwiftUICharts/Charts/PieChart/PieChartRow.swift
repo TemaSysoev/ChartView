@@ -64,14 +64,14 @@ public struct PieChartRow: View {
                     
                     .scaleEffect(currentTouchedIndex == index ? 1.05 : 1)
                     .animation(Animation.spring())
-                    
+                    if currentTouchedIndex == index || abs(self.slices[index].startDeg - self.slices[index].endDeg) > 10{
                     Text("\(slices[index].label)")
                         
                         .font(.system(size: 9))
-                        .offset(x: 45)
+                        .offset(x: 80)
                         .rotationEffect(.degrees((self.slices[index].startDeg + self.slices[index].endDeg)/2))
                         .scaleEffect(currentTouchedIndex == index ? 1.1 : 1)
-                           
+                    }
                            
                     
                 }
